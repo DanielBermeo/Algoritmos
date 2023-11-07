@@ -1,26 +1,17 @@
-# This is a sample Python script.
-
-# Press Mayús+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
 def empacar(objetos, bolsas, w_max):
     bolsas_final=[]
     #objetos = objetos.sort(reverse = True)
     i = len(objetos)
-    inx_disp = []
 
-    # Encuentra las bolsas aun no llenas
-    j = 0
+    # Encuentra cuantas bolsas no llenas hay
+    inx_disp = 0
     for x in bolsas:
         if(x < w_max):
-            inx_disp.append(j)
-        j += 1
+            inx_disp += 1
 
    #Condicion de salida
-    print(bolsas)
     if i == 0:
-        return bolsas_final
+        return bolsas
 
     objeto = objetos[0]
     bolsa_act = encontrar_indice(w_max, objeto, inx_disp, bolsas)
@@ -35,7 +26,7 @@ def empacar(objetos, bolsas, w_max):
 
     if (objeto > w_max - w):
 
-        if(len(inx_disp)>1):
+        if(inx_disp>1):
             guardar = bolsas.pop(bolsa_act)
             return [guardar] + empacar(objetos,bolsas,w_max)
         # Crear una nueva bolsa con el objeto
@@ -54,11 +45,6 @@ def empacar(objetos, bolsas, w_max):
         # meter el objeto
         bolsas_final.append(empacar(objetos[1:], bolsas_aux, w_max))
 
-        # No meter el objeto
-
-        # retirar bolsa
-        guardar = bolsas.pop(bolsa_act);
-        bolsas_final.append([guardar] + empacar(objetos, bolsas, w_max))
 
         return bolsas_final
 
@@ -76,14 +62,9 @@ def encontrar_indice(w_max,objeto,inx_disp,bolsas):
         return -1
 
 
-
-
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    lista = [5, 4, 3, 2, 1]
-    w = 5
+    lista = [12,7,5, 4, 3, 2,2, 1]
+    w = 15
     bolsas = [0]
 
     print(empacar(lista, bolsas, w))
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
