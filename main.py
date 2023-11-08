@@ -1,3 +1,5 @@
+import numpy as np
+
 def empacar(objetos, bolsas, w_max):
     bolsas_final=[]
     #objetos = objetos.sort(reverse = True)
@@ -47,7 +49,6 @@ def empacar(objetos, bolsas, w_max):
 
 
         return bolsas_final
-
 def encontrar_indice(w_max,objeto,inx_disp,bolsas):
 
 
@@ -60,11 +61,14 @@ def encontrar_indice(w_max,objeto,inx_disp,bolsas):
                 return i
             i+=1
         return -1
-
+    
 
 if __name__ == '__main__':
-    lista = [12,7,5, 4, 3, 2,2, 1]
-    w = 15
+    #lista = np.random.randint(1,10,1000)
+    #lista = list(lista)
+    lista = [8,6,9,15,5,2,1,3]
+    lista.sort(reverse=True)
+    print(lista)
+    w = 20
     bolsas = [0]
-
     print(empacar(lista, bolsas, w))
